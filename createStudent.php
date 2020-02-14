@@ -5,10 +5,13 @@
     $saved = saveStudent($_POST);
 
     if($saved) {
-      header('Location: /crud/?status=success');
+      header('Location: /Workshop-04/?status=success');
     } else {
-      header('Location: /crud/?status=error');
+      header('Location: /Workshop-04/?status=error');
     }
   } else {
-    header('Location: /crud/?status=error');
+    header('Location: /Workshop-04/?status=error');
   }
+  ?>
+
+

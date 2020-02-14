@@ -3,7 +3,7 @@
  *  Gets a new mysql connection
  */
 function getConnection() {
-  $connection = new mysqli('localhost:3306', 'root', 'root1234', 'php_web2');
+  $connection = new mysqli('localhost', 'root', '', 'php_web2');
   if ($connection->connect_errno) {
     printf("Connect failed: %s\n", $connection->connect_error);
     die;
@@ -18,8 +18,8 @@ function getConnection() {
  */
 function saveStudent($student) {
   $conn = getConnection();
-  $sql = "INSERT INTO students( `full_name`, `email`, `document`)
-          VALUES ('{$student['full_name']}', '{$student['email']}', '')";
+  $sql = "INSERT INTO students( `full_name`, `email`,`id_carrera`,`document`)
+          VALUES ('{$student['full_name']}', '{$student['email']}','{$student['opcion']}','')";
   $conn->query($sql);
 
   if ($conn->connect_errno) {
@@ -49,8 +49,6 @@ function updateStudent($student) {
   $conn->close();
   return true;
 }
-
-
 /**
  * Get all students from the database
  *
@@ -119,3 +117,4 @@ function uploadPicture($inputName){
     return false;
   }
 }
+

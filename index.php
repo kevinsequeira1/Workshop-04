@@ -31,7 +31,7 @@
       <?php echo $message; ?>
     </div>
     <h1>Create Students</h1>
-    <form action="/crud/createStudent.php" onsubmit="return validateStudentForm();" method="POST" class="form-inline" role="form">
+    <form action="/Workshop-04/createStudent.php" onsubmit="return validateStudentForm();" method="POST" class="form-inline" role="form">
       <div class="form-group">
         <label class="sr-only" for="">Full Name</label>
         <input type="text" class="form-control" id="full_name" name="full_name" placeholder="Full Name">
@@ -40,17 +40,45 @@
         <label class="sr-only" for="">Email</label>
         <input type="email" class="form-control" id="" name="email" placeholder="Email">
       </div>
+      <div class="form-group">
+        <label class="sr-only" for="">Carrera</label>
+        <select class="form-control" name="cbo_carreras" >
+          <?php    
+          
+          $conn = getConnection();
+          $sql = "SELECT * FROM carreras";
+          $result = $conn->query($sql);
+          
+          ?>
+          <?php 
+            
+          foreach ($result as $opciones):  
+          ?>
 
+          <option name="opcion" value="<?php echo $opciones['id']?>"><?php echo $opciones['carrera']?></option>  
+          
+          <?php endforeach ?>
+          
+          
+        </select>
+      </div>
       <button type="submit" class="btn btn-primary">Save</button>
     </form>
+
+            <br>
+            <br>
+            <br>
+
     <table class="table table-light">
       <tbody>
         <tr>
           <td>Id</td>
           <td>Full Name</td>
           <td>Email</td>
+          <td>Carrera</td>
           <td>Actions</td>
         </tr>
+
         <?php
           $students = getStudents();
           $studentsHtml = "";
